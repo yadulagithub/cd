@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Car Info</h1>
+
+<form  method="post">
+    <div>
+        <h2>Results from Survey: </h2>
+        <p><%=sdata%></p>
+      </div>
+  <div>
+    <label for="name">Name:<%=sdata.name%></label>
+  </div>
+  <div>
+    <label for="location">Location: <%=sdata.location%></label>
+  </div>
+  <div>
+      <label for="Language">Language: <%=sdata.language%></label>
+  </div>
+    <div>
+        <label for="comment">Comment: <%=sdata.comment%></label>
+    </div>
+        
+  <div class="button">
+      <a href ="/survey"><button type="button">goback</button></a>
+  </div>
+</form>
+</body>
+</html>
