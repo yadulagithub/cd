@@ -1,0 +1,81 @@
+
+>use my_first_db;
+
+>db.createCollection('students');
+
+>db.students.insertMany([
+{ name: "Nick", 
+  home_state: "Virginia", 
+  lucky_number: 11, 
+  birthday: {month: 04, day: 15, year: 1988}},
+ 
+  { name: "Mary", 
+  home_state: "Maryland", 
+  lucky_number: 11, 
+  birthday: {month: 04, day: 15, year: 1988}},
+  { name: "Nishan", 
+  home_state: "DC", 
+  lucky_number: 14, 
+  birthday: {month: 07, day: 14, year: 1988}},
+  { name: "Neel", 
+  home_state: "Washington", 
+  lucky_number: 35, 
+  birthday: {month: 10, day: 12, year: 1967}},
+  { name: "Riva", 
+  home_state: "California", 
+  lucky_number: 28, 
+  birthday: {month: 09, day: 14, year: 1975}} 
+  ]);
+
+
+>db.students.find()
+
+>db.students.find({home_state: {$in: ["California", "DC"]}})
+>db.students.insertMany([
+{ name: "XYZ", 
+  home_state: "Virginia", 
+  lucky_number: 9, 
+  birthday: {month: 04, day: 15, year: 1988}},
+ 
+  { name: "TTT", 
+  home_state: "Maryland", 
+  lucky_number: 2, 
+  birthday: {month: 04, day: 15, year: 1988}},
+
+{ name: "bcy", 
+  home_state: "Maryland", 
+  lucky_number: 4, 
+  birthday: {month: 04, day: 15, year: 1988}}
+]);
+
+
+>db.students.find({home_state: {$gt: 3}}) 
+>db.students.find({home_state: {$lte: 10}}) 
+> db.students.find({lucky_number: {$gte: 1, $lte: 9}})
+
+> db.students.update({},
+                          {$set : {"interests": ["coding", "brunch", "MongoDB"]}},
+                          {upsert:false,
+                          multi:true}) ;
+db.students.update({name: "Riva"}, {$push: {interests: "new interest"}});
+
+db.students.update({name: "xyz"}, {$push: {interests: "taxes"}});
+
+db.students.update({name: "xyz"}, {$pull: {interests: "taxes"}});
+
+db.students.remove({home_state: "California"});
+db.students.remove({name: "xyz"});
+
+db.students.remove({lucky_number: {$gt: 5}}, {justOne: true});
+
+db.students.update({}, {$set : {"number_of_belts": 0}, {multi:true}}); 
+ db.students.update({}, {$set : {"number_of_belts": 0} }, false, true);
+db.students.update({}, {$set : {"number_of_belts": 0}, {multi:true});
+ db.students.update({}, {$rename : {"number_of_belts": "belts_earned"} }, false, true);
+
+db.students.update({}, {$unset : {"lucky_number": 0} }, false, true);
+
+db.students.update({}, 
+    { "$currentDate": { "updated_on": { "$type": date }}}, false, true);
+
+> db.students.update({},     { "$currentDate": { "updated_on": true}}, false, true);
