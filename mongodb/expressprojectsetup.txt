@@ -1,6 +1,6 @@
 Create a project folder
-npm init -i
-npm i exxpress ejs mongoose 
+npm init -y
+npm i express ejs mongoose 
 create sub folders views (.ejs or pug files ) and static ( stylesheets and images etc)
 create index.js
 
@@ -54,3 +54,8 @@ app.post('/prcaddquote', (req, res) => {
     .catch(err => res.json(err));
     res.redirect('/displayquote');
 });
+
+
+
+
+git push https://github.com/yadulagithub/cd 946938a:master
